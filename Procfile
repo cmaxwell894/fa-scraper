@@ -1,1 +1,1 @@
-web: playwright install && python app.py
+web: python -m playwright install chromium && python app.py
