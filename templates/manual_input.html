@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manual Team Input</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+        }
+        h1 {
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #0078d7;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #005fa3;
+        }
+        .missing-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Manual Team Input</h1>
+
+    <div class="missing-box">
+        <h3>The following leagues had no teams:</h3>
+        <ul>
+            {% for league in missing_leagues %}
+                <li>{{ league }}</li>
+            {% endfor %}
+        </ul>
+        <p>Please paste the missing team names (one per line) below:</p>
+    </div>
+
+    <form method="post" action="{{ url_for('manual_input') }}">
+        <textarea name="manual_teams" placeholder="Enter team names here, one per line..."></textarea>
+        <br>
+        <button type="submit">Submit Teams</button>
+    </form>
+</body>
+</html>
